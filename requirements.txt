@@ -1,0 +1,8 @@
+pandas
+streamlit
+requests
+lxml
+countryflag
+selenium==4.18.1
+webdriver-manager
+seleniumbase
