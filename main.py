@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
+import time
+import random
 
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 10)
@@ -10,6 +12,7 @@ url = "https://rdeapps.stanford.edu/dininghallmenu/"
 driver.get(url)
 
 def selector(element_id, option_value):
+    time.sleep(random.randint(0.5,2)*0.75)
     dropdown = wait.until(EC.presence_of_element_located((By.ID, element_id)))
     for option in dropdown.find_elements(By.TAG_NAME, "option"):
         # find the matching name in dropdown 
