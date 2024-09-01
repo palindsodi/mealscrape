@@ -6,7 +6,7 @@ import time
 import random
 from datetime import datetime, timedelta
 
-print("||||||||||||| STANFORD RDE MENU VIEWER |||||||||||||")
+print("||||||||||||| STANFORDHUNGRY |||||||||||||")
 
 # hall filtering
 HALLS = ["Arrillaga", "Branner", "EVGR", "FlorenceMoore", "GerhardCasper", "Lakeside", "Ricker", "Stern", "Wilbur"]
