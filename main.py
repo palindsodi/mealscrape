@@ -14,7 +14,7 @@ HALLS = ["Arrillaga", "Branner", "EVGR", "FlorenceMoore", "GerhardCasper", "Lake
 target_hall = ""
 hall_chosen = False
 while hall_chosen == False:
-    target_hall = input("Select hall(s):\n(0) Arrillaga\n(1) Branner\n(2) EVGR\n(3) FloMO\n(4) Capser\n(5) Lakeside\n(6) Ricker\n(7) Stern\n(8) Wilbur\nPress ENTER to skip\n")
+    target_hall = input("\nSelect hall(s):\n(0) Arrillaga\n(1) Branner\n(2) EVGR\n(3) FloMO\n(4) Capser\n(5) Lakeside\n(6) Ricker\n(7) Stern\n(8) Wilbur\nExample input: 70\n\t-> Stern, Arrillaga\nPress ENTER to skip\n")
     hall_chosen = True
     for i in target_hall:
         if i not in ["0","1","2","3","4","5","6","7","8"]:
@@ -33,7 +33,7 @@ for i in range(7):
     DAYS.append(current_time.strftime('%-m/%-d/%Y'))
     current_time += timedelta(days=1)
 
-datestring = "Select date(s):\n"
+datestring = "\nSelect date(s):\n"
 for i in range(0,6):
     datestring += "("+str(i)+") "+ DAYS[i] + "\n"
 
@@ -51,11 +51,28 @@ for i in target_day:
     days_search.append(DAYS[int(i)])
 if len(target_day) == 0: target_day = DAYS
 
+# meal filtering
+MEALS = ["Breakfast", "Lunch", "Dinner", "Brunch"]
+
+target_meal = ""
+meal_chosen = False
+while meal_chosen == False:
+    target_meal = input("\nSelect meal(s):\n(0) Breakfast\n(1) Lunch\n(2) Dinner\n(3) Brunch\nExample input: 12\n\t-> Lunch, Dinner\nPress ENTER to skip\n")
+    meal_chosen = True
+    for i in target_meal:
+        if i not in ["0","1","2","3"]:
+            print("Invalid input ...")
+            meal_chosen = False
+meals_search = []
+for i in target_meal:
+    meals_search.append(MEALS[int(i)])
+if len(target_meal) == 0: target_meal = MEALS
+
 # speed choice
 drowsy = -1
 while drowsy not in [0,1,2]:
     try:
-        drowsy = int(input("Select a speed:\n(0) Normal\n(1) Fast\n(2) Faster (beware IP bans)\n"))
+        drowsy = int(input("\nSelect speed:\n(0) Normal\n(1) Fast\n(2) Faster (beware IP bans)\n"))
         if drowsy not in [0,1,2]:
             print("Invalid input ...")
     except:
@@ -99,7 +116,7 @@ for hall in halls:
 
         meal_dropdown = driver.find_element(By.ID, "MainContent_lstMealType")
         # list names of meals
-        meals = [m.get_attribute("value") for m in meal_dropdown.find_elements(By.TAG_NAME, "option") if m.get_attribute("value") != '']
+        meals = [m.get_attribute("value") for m in meal_dropdown.find_elements(By.TAG_NAME, "option") if m.get_attribute("value") in meals_search]
         for meal in meals:
             print("\t\t------- " + ''.join(meal).upper() + " -------")
             selector("MainContent_lstMealType", meal)
