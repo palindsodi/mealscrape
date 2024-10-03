@@ -14,7 +14,7 @@ HALLS = ["Arrillaga", "Branner", "EVGR", "FlorenceMoore", "GerhardCasper", "Lake
 target_hall = ""
 hall_chosen = False
 while hall_chosen == False:
-    target_hall = input("\nSelect hall(s):\n(0) Arrillaga\n(1) Branner\n(2) EVGR\n(3) FloMO\n(4) Capser\n(5) Lakeside\n(6) Ricker\n(7) Stern\n(8) Wilbur\nExample input: 70\n\t-> Stern, Arrillaga\nPress ENTER to skip\n")
+    target_hall = input("\nSelect hall(s):\n(0) Arrillaga\n(1) Branner\n(2) EVGR\n(3) FloMo\n(4) Casper\n(5) Lakeside\n(6) Ricker\n(7) Stern\n(8) Wilbur\nExample input: 70\n\t-> Stern, Arrillaga\nPress ENTER to skip\n")
     hall_chosen = True
     for i in target_hall:
         if i not in ["0","1","2","3","4","5","6","7","8"]:
@@ -94,9 +94,9 @@ def selector(element_id, option_value):
         # find the matching name in dropdown 
         if option.get_attribute("value") == option_value:
             option.click()
-            # staleness anticipated for last dropdown (meal)
-            if element_id == "MainContent_lstMealType":
-                wait.until(EC.staleness_of(dropdown))  
+            # if staleness anticipated for last dropdown (meal)
+            # if element_id == "MainContent_lstMealType":
+                # wait.until(EC.staleness_of(dropdown))  
             break
 
 
